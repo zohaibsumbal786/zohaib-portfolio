@@ -1,134 +1,137 @@
-# Vanguard AI — AI Solutions Engineered for Tomorrow
+# Zohaib Ahmad Khan Sumbal - Portfolio
 
-> Official website for **Vanguard AI**, an AI & Software Engineering Agency based in Pakistan.  
-> Built with React, TanStack Router, TailwindCSS v4, and Vite.
+**Data Scientist & AI Engineer**
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react&logoColor=black)](https://reactjs.org/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind-v4-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
+A modern, interactive portfolio showcasing my expertise in AI, Machine Learning, Deep Learning, and Full-Stack Development.
 
 ---
 
-## 🌐 Live Site
+## 🚀 About Me
 
-Deployed at: **[vanguardai.com](https://vanguardai.com)** _(replace with your actual domain)_
+I'm a **BS Data Science graduate** from MNS University of Agriculture Multan (MNSUAM) with a strong foundation in artificial intelligence, machine learning, and data engineering. I specialize in building production-ready AI applications that solve real-world business problems.
 
----
-
-## 🏗️ Tech Stack
-
-| Layer         | Technology                              |
-| ------------- | --------------------------------------- |
-| Framework     | React 19 + TanStack Router (file-based) |
-| Styling       | TailwindCSS v4 + tw-animate-css         |
-| Build Tool    | Vite 8                                  |
-| Language      | TypeScript 5                            |
-| UI Components | Radix UI + shadcn/ui                    |
-| Icons         | Lucide React                            |
-| Forms         | React Hook Form + Zod                   |
-| Charts        | Recharts                                |
+### Core Expertise:
+- 🤖 **Generative AI & LLMs**: Agentic AI, Multi-Agent Orchestration, RAG Systems
+- 🧠 **Machine Learning & Deep Learning**: Computer Vision, NLP, CNN, Statistical Modeling  
+- 💻 **Full-Stack Development**: React, Next.js, FastAPI, TypeScript, Node.js
+- 🔧 **AI Engineering**: LangChain, LangGraph, CrewAI, OpenAI/Claude/Groq APIs
+- 📊 **Data Science**: Power BI, Tableau, Statistical Analysis, Predictive Modeling
 
 ---
 
-## 📁 Project Structure
+## 📫 Contact
 
-```
-src/
-├── assets/              # Logo and static images
-├── components/          # Reusable UI components (shadcn/ui + custom)
-│   ├── site-layout.tsx  # Nav, Footer, FloatingWhatsApp, PageHero
-│   └── ...              # Radix UI components
-└── routes/              # File-based pages (TanStack Router)
-    ├── __root.tsx        # Root layout
-    ├── index.tsx         # Home page (/)
-    ├── services.tsx      # Services page (/services)
-    ├── portfolio.tsx     # Portfolio page (/portfolio)
-    ├── about.tsx         # About page (/about)
-    ├── contact.tsx       # Contact page (/contact)
-    └── sitemap[.]xml.ts  # Sitemap
-```
+- **Email:** zohaibsumbal8@gmail.com
+- **Phone:** +92 306 1032323
+- **Location:** Muzaffargarh, Pakistan
+- **GitHub:** [github.com/zohaibsumbal786](https://github.com/zohaibsumbal786)
+- **Portfolio:** [zyftora-ai-solutions.pages.dev](https://zyftora-ai-solutions.pages.dev)
 
 ---
 
-## 🚀 Getting Started
+## 🎓 Education
 
-### Prerequisites
-
-- **Node.js** 18+ and **npm** (or **bun**)
-
-### Install & Run
-
-```bash
-# Clone the repository
-git clone https://github.com/zohaibsumbal786/Vanguard AI-ai-solutions.git
-cd Vanguard AI-ai-solutions
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+**Bachelor of Science in Data Science**  
+MNS University of Agriculture Multan (MNSUAM)  
+2022 - 2026 | GPA: 3.10/4.0
 
 ---
 
-## 🛠️ Available Scripts
+## 🏆 Certifications
 
-| Command           | Description                           |
-| ----------------- | ------------------------------------- |
-| `npm run dev`     | Start development server (hot reload) |
-| `npm run build`   | Build for production                  |
-| `npm run preview` | Preview production build locally      |
-| `npm run lint`    | Run ESLint                            |
-| `npm run format`  | Format code with Prettier             |
-
----
-
-## 📄 Pages
-
-| Route        | Description                                                     |
-| ------------ | --------------------------------------------------------------- |
-| `/`          | Home — Hero, Services, About, Team, Process, Portfolio, Contact |
-| `/services`  | Detailed services page with 6 capability areas                  |
-| `/portfolio` | Full portfolio — 22+ projects across 5 categories               |
-| `/about`     | About — Mission, Team, Timeline, Tech stack                     |
-| `/contact`   | Contact form, FAQ, direct contact details                       |
+- Foundations of Data Science - Google
+- Data Analysis with R Programming - Google
+- Introduction to IoT and Embedded Systems - UC Irvine
+- Discover Data Analysis - Microsoft
+- Implement Error Handling with Transact-SQL - Microsoft
+- End-to-End Analytics Using Microsoft Fabric - Microsoft
 
 ---
 
-## 🚢 Deployment
+## 💼 Featured Projects
 
-### Vercel (Recommended)
+### 🔬 Meridian - AI Research Intelligence Platform
+Enterprise AI research platform with semantic paper search, LLM research copilot, and interactive knowledge graph.
 
-1. Push this repo to GitHub
-2. Go to [vercel.com](https://vercel.com) → New Project → Import from GitHub
-3. Select this repository
-4. Vercel auto-detects Vite — click **Deploy**
-5. Add your custom domain in Vercel dashboard
+**Tech:** React, FastAPI, Groq LLaMA-3, PubMed API, RAG
 
-### Netlify
+### 🛡️ Sentinel Grid - AI Security Operations Platform
+SIEM platform with multi-agent AI pipeline for log correlation and automated incident investigation.
 
-1. Go to [netlify.com](https://netlify.com) → Add new site → Import from Git
-2. Build command: `npm run build`
-3. Publish directory: `dist`
-4. Deploy
+**Tech:** FastAPI, Next.js, OpenAI, Neo4j, RAG
+
+### 📞 RingBack AI - WhatsApp Business Assistant
+AI receptionist SaaS for missed-call recovery with lead qualification and appointment booking.
+
+**Tech:** FastAPI, Celery, Claude API, WhatsApp Business API
+
+### 🤖 337-Agent Orchestration System
+Master orchestrator managing 337 specialized AI agents across engineering, marketing, and security.
+
+**Tech:** TypeScript, Multi-Agent Systems, Task Routing
+
+### 🏥 IoT-Based Non-Invasive Glucose Monitoring
+Research paper: Biometric health kiosk with ML-based glucose estimation (87% accuracy).
+
+**Tech:** ESP32, Machine Learning, IoT, Python
+
+### 🎯 Eziline Talent Match AI Platform
+AI-powered candidate-job matching with semantic search and automated scheduling.
+
+**Tech:** React, FastAPI, ChromaDB, Sentence Transformers
+
+...and 25+ more projects on [GitHub](https://github.com/zohaibsumbal786)!
 
 ---
 
-## 📞 Contact
+## 🛠️ Technical Skills
 
-- **Website:** [vanguardai.com](https://vanguardai.com)
-- **Email:** vanguardai@gmail.com
-- **WhatsApp:** +92 315 6977277
-- **Instagram:** [@vanguardai.1](https://www.instagram.com/vanguardai.1?stkn=cGJlbWtkOXYxNHNp&utm_source=qr)
-- **Facebook:** [Vanguard AI](https://www.facebook.com/profile.php?id=61593997093529&mibextid=wwXIfr&rdid=cHudkUxn7TyrCXSD&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1HRgGtR4Cm%2F%3Fmibextid%3DwwXIfr)
-- **TikTok:** [@vanguardaillc](https://www.tiktok.com/@vanguardaillc)
+### AI & Machine Learning
+- Machine Learning, Deep Learning, Computer Vision, NLP
+- CNN, ANN, Statistical Modeling, Predictive Analytics
+
+### Generative AI & LLMs
+- Agentic AI, Multi-Agent Orchestration, RAG Systems
+- LangChain, LangGraph, CrewAI, Prompt Engineering
+- OpenAI GPT-4, Anthropic Claude, Groq LLaMA
+
+### Programming Languages
+- Python, JavaScript/TypeScript, C++, Java, R, SQL
+
+### Web Development
+- React, Next.js, Node.js, Express, FastAPI, Tailwind CSS
+
+### Databases & DevOps
+- PostgreSQL, Redis, Neo4j, Supabase, Docker, Git
+
+### Data Science Tools
+- Pandas, NumPy, Scikit-learn, TensorFlow, PyTorch
+- Power BI, Tableau, Jupyter Notebook
 
 ---
 
-## 📝 License
+## 📝 Research & Publications
 
-All rights reserved © 2026 Vanguard AI. Built for production deployment.
+**"An Intelligent IoT-Based Non-Invasive Glucose Monitoring System Using Machine Learning"**
+
+Designed and implemented a multi-parameter biometric health kiosk achieving 87% accuracy in Clarke Zone A+B for glucose estimation.
+
+---
+
+## 🚀 Tech Stack
+
+This portfolio is built with:
+- ⚡ **Vite** - Next-gen build tool
+- ⚛️ **React 19** - UI library
+- 🎨 **Tailwind CSS 4** - Utility-first CSS
+- 🛣️ **TanStack Router** - Type-safe routing
+- 📦 **TypeScript** - Type safety
+- ☁️ **Cloudflare Pages** - Deployment
+
+---
+
+## 📄 License
+
+© 2026 Zohaib Ahmad Khan Sumbal. All rights reserved.
+
+Built with passion for AI and innovation.

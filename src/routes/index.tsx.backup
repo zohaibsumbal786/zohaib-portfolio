@@ -1,0 +1,1607 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import {
+  SiteNav,
+  SiteFooter,
+  FloatingWhatsApp,
+  useReveal,
+} from "@/components/site-layout";
+import { PORTFOLIO_CONFIG, FEATURED_PROJECTS, PROJECT_CATEGORIES } from "@/lib/portfolio-config";
+import {
+  Bot,
+  Brain,
+  Sparkles,
+  BarChart3,
+  Wifi,
+  Code2,
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  Mail,
+  MapPin,
+  Phone,
+  Instagram,
+  Facebook,
+  Music2,
+  Compass,
+  PenTool,
+  Hammer,
+  Rocket,
+  MessageSquare,
+  Receipt,
+  Target,
+  LayoutDashboard,
+  Zap,
+  Layers,
+  Gauge,
+  Shield,
+  Eye,
+  Car,
+  Bird,
+  ShieldAlert,
+  PieChart,
+  Mic,
+  Music,
+  Pill,
+  FlaskConical,
+  Star,
+  Users,
+  TrendingUp,
+  Clock,
+  Globe,
+  Lock,
+  Activity,
+  Building2,
+  HeartPulse,
+  GraduationCap,
+  ShoppingCart,
+} from "lucide-react";
+
+const WHATSAPP_HREF = PORTFOLIO_CONFIG.whatsapp + "?text=" + encodeURIComponent("Hi Zohaib! I'd like to discuss a project with you.");
+const WHATSAPP_NUMBER = PORTFOLIO_CONFIG.phone;
+const EMAIL = PORTFOLIO_CONFIG.email;
+const GITHUB_URL = PORTFOLIO_CONFIG.github;
+const INSTAGRAM_URL = "https://www.instagram.com/vanguardai.1?stkn=cGJlbWtkOXYxNHNp&utm_source=qr";
+const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61593997093529&mibextid=wwXIfr&rdid=cHudkUxn7TyrCXSD&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1HRgGtR4Cm%2F%3Fmibextid%3DwwXIfr";
+
+function WhatsAppIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
+      <path d="M19.11 4.91A10.05 10.05 0 0 0 12.04 2C6.6 2 2.18 6.42 2.18 11.86c0 1.74.46 3.44 1.32 4.94L2.1 22l5.34-1.4a9.86 9.86 0 0 0 4.6 1.17h.01c5.44 0 9.86-4.42 9.86-9.86 0-2.63-1.02-5.1-2.8-6.99zM12.05 20.1h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.17.83.85-3.09-.2-.32a8.18 8.18 0 0 1-1.26-4.34c0-4.52 3.68-8.2 8.2-8.2a8.16 8.16 0 0 1 5.8 2.4 8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.2 8.2zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.22-.08-.38-.12-.55.12-.16.25-.62.8-.76.96-.14.16-.28.18-.52.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.28.37-.43.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.66.31-.22.25-.86.84-.86 2.05 0 1.2.88 2.37 1 2.53.12.16 1.73 2.64 4.19 3.71.59.25 1.04.4 1.4.51.59.19 1.13.16 1.55.1.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.16-.48-.28z" />
+    </svg>
+  );
+}
+
+function Social({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      aria-label={label}
+      target="_blank"
+      rel="noreferrer"
+      className="grid h-11 w-11 place-items-center rounded-xl border border-white/[0.08] bg-white/[0.04] text-foreground/70 transition-all hover:scale-110 hover:border-[color:var(--cyan-glow)]/40 hover:text-[color:var(--cyan-glow)]"
+    >
+      {children}
+    </a>
+  );
+}
+
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Vanguard AI — Software House for AI-Powered Products" },
+      {
+        name: "description",
+        content:
+          "Vanguard AI is a software house building custom web platforms, AI products, automation systems, data tools, and connected applications for ambitious businesses.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+  }),
+  component: IndexPage,
+});
+
+function IndexPage() {
+  return (
+    <div className="site-home min-h-screen bg-background text-foreground">
+      <SiteNav />
+      <main>
+        <Hero />
+        <TrustBar />
+        <IndustrySolutions />
+        <RoiCalculator />
+        <Services />
+        <About />
+        <Team />
+        <Process />
+        <Portfolio />
+        <Testimonials />
+        <Cta />
+        <Contact />
+      </main>
+      <SiteFooter />
+      <FloatingWhatsApp />
+    </div>
+  );
+}
+
+const INDUSTRIES = [
+  {
+    icon: Building2,
+    title: "AI for Real Estate",
+    body: "Lead qualification, property search assistants, valuation workflows, document intelligence, and portfolio dashboards for modern real estate teams.",
+  },
+  {
+    icon: HeartPulse,
+    title: "AI for Healthcare",
+    body: "Patient-facing assistants, monitoring dashboards, workflow automation, and decision-support tools designed around privacy and human oversight.",
+  },
+  {
+    icon: GraduationCap,
+    title: "AI for Education",
+    body: "Learning assistants, assessment tools, student analytics, content workflows, and platforms that help educators personalize outcomes.",
+  },
+  {
+    icon: ShoppingCart,
+    title: "AI for E-commerce",
+    body: "Customer support agents, product discovery, demand forecasting, recommendations, and operations automation that improves conversion and retention.",
+  },
+];
+
+function IndustrySolutions() {
+  useReveal();
+  return (
+    <section className="light-section bg-slate-50 py-20 text-slate-950 sm:py-28">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="reveal max-w-2xl">
+          <span className="eyebrow">Industry solutions</span>
+          <h2 className="mt-4 font-display text-4xl font-bold sm:text-5xl">
+            Technology shaped around the way your industry works.
+          </h2>
+          <p className="mt-5 text-lg text-slate-600">
+            We combine product engineering with domain-aware AI to solve the
+            workflows behind the headline.
+          </p>
+        </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {INDUSTRIES.map((industry) => (
+            <article
+              key={industry.title}
+              className="reveal border border-slate-200 bg-white p-6 transition-all hover:-translate-y-1 hover:border-cyan-500"
+            >
+              <industry.icon className="h-7 w-7 text-cyan-600" />
+              <h3 className="mt-6 font-display text-xl font-bold">
+                {industry.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                {industry.body}
+              </p>
+              <Link
+                to="/contact"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-cyan-700"
+              >
+                Discuss your use case <ArrowRight className="h-4 w-4" />
+              </Link>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RoiCalculator() {
+  useReveal();
+  const [hours, setHours] = useState(20);
+  const [rate, setRate] = useState(25);
+  const [weeks, setWeeks] = useState(48);
+  const monthlyValue = hours * rate * 4;
+  const annualValue = (monthlyValue * weeks) / 4;
+  return (
+    <section className="light-section bg-white py-20 text-slate-950 sm:py-28">
+      <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:px-8">
+        <div className="reveal">
+          <span className="eyebrow">ROI calculator</span>
+          <h2 className="mt-4 font-display text-4xl font-bold sm:text-5xl">
+            See what one smarter workflow could be worth.
+          </h2>
+          <p className="mt-5 max-w-xl text-lg text-slate-600">
+            Estimate the annual value of automating repetitive work. This is a
+            directional planning tool, not a promise, and our team can turn the
+            estimate into a scoped business case.
+          </p>
+          <Link
+            to="/contact"
+            className="mt-8 inline-flex items-center gap-2 bg-slate-950 px-6 py-3 text-sm font-bold text-white"
+          >
+            Get a detailed estimate <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="reveal border border-slate-200 bg-slate-50 p-7 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.5)] sm:p-9">
+          <div className="mb-8 flex items-center justify-between border-b border-slate-200 pb-5">
+            <div>
+              <p className="text-sm font-bold text-slate-950">
+                Automation value
+              </p>
+              <p className="mt-1 text-xs text-slate-500">
+                Adjust the assumptions to model your workflow.
+              </p>
+            </div>
+            <div className="grid h-10 w-10 place-items-center rounded-full bg-cyan-100 text-cyan-700">
+              <TrendingUp className="h-5 w-5" />
+            </div>
+          </div>
+          <label className="block text-sm font-semibold">
+            Hours saved each week{" "}
+            <input
+              type="range"
+              min="1"
+              max="80"
+              value={hours}
+              onChange={(event) => setHours(Number(event.target.value))}
+              className="mt-3 w-full accent-cyan-600"
+            />
+            <span className="mt-2 block text-2xl font-bold text-cyan-700">
+              {hours} hours
+            </span>
+          </label>
+          <label className="mt-7 block text-sm font-semibold">
+            Blended hourly value ($){" "}
+            <input
+              type="number"
+              min="1"
+              value={rate}
+              onChange={(event) => setRate(Number(event.target.value) || 1)}
+              className="mt-3 w-full border border-slate-300 bg-white px-4 py-3"
+            />
+          </label>
+          <label className="mt-7 block text-sm font-semibold">
+            Working weeks per year{" "}
+            <input
+              type="number"
+              min="1"
+              max="52"
+              value={weeks}
+              onChange={(event) => setWeeks(Number(event.target.value) || 1)}
+              className="mt-3 w-full border border-slate-300 bg-white px-4 py-3"
+            />
+          </label>
+          <div className="mt-8 border-t border-slate-200 bg-white p-5 pt-5">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+              Estimated annual value
+            </p>
+            <p className="mt-2 font-display text-5xl font-bold text-slate-950">
+              ${Math.round(annualValue).toLocaleString()}
+            </p>
+            <p className="mt-2 text-sm text-slate-600">
+              Approx. ${Math.round(monthlyValue).toLocaleString()} per month
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Circuit background SVG */
+function CircuitField() {
+  return (
+    <svg
+      aria-hidden
+      className="pointer-events-none absolute inset-0 h-full w-full"
+      preserveAspectRatio="xMidYMid slice"
+      viewBox="0 0 1440 900"
+    >
+      <defs>
+        <linearGradient id="cl1" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stopColor="#3FD3E8" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#6C5CE7" stopOpacity="0.4" />
+        </linearGradient>
+        <radialGradient id="nd1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#3FD3E8" stopOpacity="0.9" />
+          <stop offset="100%" stopColor="#3FD3E8" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <g stroke="url(#cl1)" strokeWidth="1" fill="none" opacity="0.45">
+        <path d="M0 220 L340 220 L400 280 L720 280 L780 220 L1060 220 L1120 160 L1440 160" />
+        <path d="M0 460 L200 460 L260 520 L580 520 L640 460 L940 460 L1000 520 L1440 520" />
+        <path d="M0 700 L280 700 L340 640 L700 640 L760 700 L1140 700 L1200 760 L1440 760" />
+        <path d="M220 0 L220 160 L280 220 L280 400 L340 460 L340 640" />
+        <path d="M960 0 L960 100 L1020 160 L1020 360 L1080 420 L1080 600" />
+      </g>
+      {(
+        [
+          [340, 220],
+          [720, 280],
+          [1060, 220],
+          [200, 460],
+          [580, 520],
+          [940, 460],
+          [280, 700],
+          [700, 640],
+          [1140, 700],
+          [220, 160],
+          [1020, 360],
+        ] as [number, number][]
+      ).map(([x, y], i) => (
+        <g
+          key={i}
+          style={{ animationDelay: `${(i % 6) * 0.5}s` }}
+          className="node-dot"
+        >
+          <circle cx={x} cy={y} r="16" fill="url(#nd1)" />
+          <circle cx={x} cy={y} r="2.5" fill="#3FD3E8" />
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+/* Hero Section */
+function Hero() {
+  useReveal();
+  return (
+    <section
+      id="home"
+      className="relative isolate flex min-h-[88svh] items-center overflow-hidden border-b border-white/[0.08] bg-[#07111f] pt-20"
+    >
+      <TechField />
+      <div className="relative mx-auto w-full max-w-7xl px-5 py-20 lg:px-8">
+        <div className="max-w-4xl">
+          <div className="reveal inline-flex items-center gap-2.5 border-l-2 border-[#3FD3E8] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--cyan-glow)] mb-8">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--cyan-glow)] opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[color:var(--cyan-glow)]" />
+            </span>
+            DATA SCIENTIST · AI ENGINEER · PAKISTAN
+          </div>
+          <h1 className="reveal font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-[5.25rem]">
+            {PORTFOLIO_CONFIG.name.split(' ').slice(0, 2).join(' ')}
+            <br />
+            <span className="text-gradient">{PORTFOLIO_CONFIG.name.split(' ').slice(2).join(' ')}</span>
+          </h1>
+          <p className="reveal mt-5 text-2xl font-semibold text-[color:var(--cyan-glow)]">
+            {PORTFOLIO_CONFIG.title}
+          </p>
+          <p className="reveal mt-7 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
+            {PORTFOLIO_CONFIG.bio}
+          </p>
+          <div className="reveal mt-10 flex flex-wrap items-center gap-4">
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-gradient-brand px-7 py-3.5 text-base font-semibold text-[#0a0e1a] shadow-[0_0_50px_-10px_rgba(63,211,232,0.7)] transition-all hover:scale-105"
+            >
+              Get In Touch{" "}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.03] px-7 py-3.5 text-base font-semibold text-foreground transition-all hover:border-white/30 hover:bg-white/[0.06]"
+            >
+              View Projects <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+        <div className="reveal mt-20 grid max-w-3xl grid-cols-2 gap-px overflow-hidden border border-white/[0.14] bg-white/[0.08] sm:grid-cols-4">
+          {PORTFOLIO_CONFIG.stats.map((s) => (
+            <div
+              key={s.label}
+              className="bg-[oklch(0.16_0.035_265)] px-6 py-6 text-center"
+            >
+              <p className="font-display text-3xl font-bold text-gradient">
+                {s.n}
+              </p>
+              <p className="mt-1.5 text-xs text-muted-foreground">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TechField() {
+  return (
+    <div
+      aria-hidden
+      className="tech-field pointer-events-none absolute inset-0 overflow-hidden"
+    >
+      <div className="tech-grid absolute inset-0" />
+      <div className="tech-beam tech-beam-one" />
+      <div className="tech-beam tech-beam-two" />
+      <div className="tech-ring tech-ring-one" />
+      <div className="tech-ring tech-ring-two" />
+      {Array.from({ length: 14 }, (_, index) => (
+        <span
+          key={index}
+          className="tech-node"
+          style={{
+            left: `${8 + ((index * 29) % 88)}%`,
+            top: `${12 + ((index * 47) % 76)}%`,
+            animationDelay: `${(index % 7) * 0.7}s`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* Trust Bar */
+function TrustBar() {
+  const items = [
+    "Custom Software",
+    "Product Engineering",
+    "AI Automation",
+    "Web Platforms",
+    "Data & Analytics",
+    "Computer Vision",
+    "Machine Learning",
+    "RAG & LLM Apps",
+    "Business Intelligence",
+    "IoT Systems",
+    "Cloud APIs",
+    "MVP Development",
+  ];
+  return (
+    <div className="light-section relative overflow-hidden border-y border-slate-200 bg-white py-5">
+      <div
+        className="flex gap-12 whitespace-nowrap"
+        style={{ animation: "marquee 28s linear infinite" }}
+      >
+        {[...items, ...items].map((item, i) => (
+          <span
+            key={i}
+            className="inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/60"
+          >
+            <span className="h-1 w-1 rounded-full bg-[color:var(--cyan-glow)] opacity-60" />
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* Services Data */
+const SERVICES = [
+  {
+    icon: Bot,
+    color: "from-[#3FD3E8] to-[#4B6EF5]",
+    title: "AI Agents & Automation",
+    tagline: "Autonomous teammates that close loops, not tickets.",
+    body: "Custom AI agents that handle support, lead generation, sales conversations, and end-to-end workflows -- operating 24/7 without human intervention.",
+    bullets: [
+      "WhatsApp, web & email agents",
+      "Tool-calling with guardrails",
+      "Human-in-the-loop controls",
+      "Full observability & analytics",
+    ],
+  },
+  {
+    icon: Brain,
+    color: "from-[#4B6EF5] to-[#6C5CE7]",
+    title: "Machine Learning Solutions",
+    tagline: "Predictive systems built on your actual data.",
+    body: "Production ML pipelines -- fraud detection, demand forecasting, classification -- trained on your data and deployed into your infrastructure with monitoring.",
+    bullets: [
+      "Fraud & anomaly detection",
+      "Forecasting & demand modeling",
+      "End-to-end MLOps pipelines",
+      "Model monitoring & drift detection",
+    ],
+  },
+  {
+    icon: Sparkles,
+    color: "from-[#6C5CE7] to-[#3FD3E8]",
+    title: "Generative AI Integration",
+    tagline: "Your company's knowledge, made conversational.",
+    body: "RAG systems, GPT-powered tools, document intelligence, and domain-tuned AI assistants that work on your private data with full security.",
+    bullets: [
+      "Retrieval-augmented generation",
+      "Domain-tuned LLM assistants",
+      "Document & PDF intelligence",
+      "Private, secure deployments",
+    ],
+  },
+  {
+    icon: BarChart3,
+    color: "from-[#3FD3E8] to-[#6C5CE7]",
+    title: "Data Science & Analytics",
+    tagline: "From raw data to decisions that move the needle.",
+    body: "Power BI and Tableau dashboards, custom KPI engineering, and data pipelines that turn scattered data into a single source of truth.",
+    bullets: [
+      "Power BI & Tableau dashboards",
+      "Data warehousing & ETL pipelines",
+      "Cohort & funnel analysis",
+      "Custom KPI & metric systems",
+    ],
+  },
+  {
+    icon: Wifi,
+    color: "from-[#4B6EF5] to-[#3FD3E8]",
+    title: "IoT Systems & Embedded AI",
+    tagline: "Smart hardware that thinks in the field.",
+    body: "End-to-end IoT solutions -- ESP32 firmware, sensor integration, MQTT pipelines, cloud dashboards, and edge AI inference for monitoring and automation.",
+    bullets: [
+      "ESP32/Arduino firmware & FreeRTOS",
+      "MQTT broker & cloud pipelines",
+      "Real-time monitoring dashboards",
+      "Edge AI & embedded inference",
+    ],
+  },
+  {
+    icon: Code2,
+    color: "from-[#6C5CE7] to-[#4B6EF5]",
+    title: "Web & Full-Stack Development",
+    tagline: "Scalable, polished applications built to last.",
+    body: "Modern web apps, admin dashboards, internal tools, and AI-powered SaaS products -- built with React, TanStack, and production-grade backend systems.",
+    bullets: [
+      "React, Next.js & TanStack Start",
+      "Node.js, REST & GraphQL APIs",
+      "Auth, billing & integrations",
+      "Performance & SEO optimized",
+    ],
+  },
+];
+
+/* Services Section */
+function Services() {
+  useReveal();
+  return (
+    <section
+      id="services"
+      className="light-section relative scroll-mt-20 bg-white py-28 text-slate-950 sm:py-36"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 [background:radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(63,211,232,0.07),transparent)]"
+      />
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="reveal mx-auto max-w-2xl text-center">
+          <span className="eyebrow">What we do</span>
+          <h2 className="mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl">
+            Everything you need to ship intelligent software.
+          </h2>
+          <p className="mt-5 text-lg text-muted-foreground">
+            Six deep capabilities. One team behind all of them. Every engagement
+            ends in production code -- not a presentation.
+          </p>
+        </div>
+        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {SERVICES.map((s, i) => (
+            <article
+              key={s.title}
+              className="reveal group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[oklch(0.19_0.038_265)] p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-white/[0.14] hover:shadow-[0_20px_60px_-15px_rgba(63,211,232,0.15)]"
+              style={{ transitionDelay: `${(i % 3) * 50}ms` }}
+            >
+              <div
+                aria-hidden
+                className={`pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-40 bg-gradient-to-br ${s.color}`}
+              />
+              <div className="relative">
+                <div
+                  className={`inline-flex h-13 w-13 items-center justify-center rounded-2xl bg-gradient-to-br ${s.color} p-3 shadow-lg`}
+                >
+                  <s.icon className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="mt-6 font-display text-xl font-bold">
+                  {s.title}
+                </h3>
+                <p className="mt-1.5 text-sm font-semibold text-gradient">
+                  {s.tagline}
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  {s.body}
+                </p>
+                <ul className="mt-5 space-y-2.5">
+                  {s.bullets.map((b) => (
+                    <li
+                      key={b}
+                      className="flex items-start gap-2.5 text-sm text-foreground/80"
+                    >
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--cyan-glow)]" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="reveal mt-12 overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-r from-[#3FD3E8]/[0.05] via-transparent to-[#6C5CE7]/[0.05] p-8 sm:flex sm:items-center sm:justify-between gap-6">
+          <div>
+            <p className="font-display text-xl font-bold">
+              Have a custom project in mind?
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              We take on complex builds that don't fit a template. Tell us what
+              you're building.
+            </p>
+          </div>
+          <Link
+            to="/services"
+            className="mt-5 inline-flex shrink-0 items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-[#0a0e1a] transition-all hover:scale-105 sm:mt-0"
+          >
+            Explore all services <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* About Section */
+const PILLARS = [
+  {
+    icon: Zap,
+    title: "Agentic-First Engineering",
+    body: "We design with autonomy at the core -- agents and automation built in from the start, not bolted on later.",
+  },
+  {
+    icon: Layers,
+    title: "Full-Stack Ownership",
+    body: "From sensor to dashboard, ML pipeline to production API -- we own the entire build with no handoff gaps.",
+  },
+  {
+    icon: Gauge,
+    title: "Outcome-Driven Delivery",
+    body: "Every project defines success metrics upfront. We ship against real business outcomes, not just feature lists.",
+  },
+  {
+    icon: Shield,
+    title: "Security & Reliability",
+    body: "Proper auth, data handling, error boundaries, and monitoring -- built for real environments, not just demos.",
+  },
+  {
+    icon: Globe,
+    title: "Remote-Native Team",
+    body: "Async-first, globally connected. Fast communication -- you always talk to the engineer who built it.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Continuous Improvement",
+    body: "We ship, monitor, and iterate. Post-launch support and model retraining are part of our standard process.",
+  },
+];
+
+function About() {
+  useReveal();
+  return (
+    <section
+      id="about"
+      className="light-section relative scroll-mt-20 bg-slate-50 py-28 text-slate-950 sm:py-36"
+    >
+      <div
+        aria-hidden
+        className="circuit-bg absolute inset-0 opacity-25 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]"
+      />
+      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="reveal mx-auto max-w-3xl text-center">
+          <span className="eyebrow">About Vanguard AI</span>
+          <h2 className="mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl">
+            A deliberate team building production-grade AI.
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            We combine deep expertise in AI agents, computer vision, IoT, and
+            full-stack development with a startup's speed and a craftsman's
+            attention to detail. We don't do proof-of-concepts -- we build and
+            ship software that runs inside real businesses.
+          </p>
+          <Link
+            to="/about"
+            className="mt-7 inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-white/25 hover:bg-white/[0.04]"
+          >
+            Learn more about us <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {PILLARS.map((p, i) => (
+            <div
+              key={p.title}
+              className="reveal group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[oklch(0.19_0.038_265)] p-7 transition-all hover:border-white/[0.14] hover:-translate-y-1"
+              style={{ transitionDelay: `${i * 50}ms` }}
+            >
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-brand mb-5">
+                <p.icon className="h-5 w-5 text-[#0a0e1a]" />
+              </div>
+              <h3 className="font-display text-lg font-bold">{p.title}</h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                {p.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Team Section */
+const TEAM = [
+  {
+    initials: "ZA",
+    name: "Zohaib Ahmed",
+    role: "CEO & Lead AI Engineer",
+    color: "from-[#3FD3E8] to-[#4B6EF5]",
+    bio: "Leads AI engineering across agentic systems, retrieval-augmented generation, computer vision, data science, data analytics, IoT embedded AI, and production ML pipelines. Published researcher in non-invasive health monitoring.",
+    skills: [
+      "AI Engineering",
+      "Agentic AI",
+      "RAG",
+      "LangChain",
+      "LangGraph",
+      "CrewAI",
+      "LLM Applications",
+      "Prompt Engineering",
+      "Tool Calling",
+      "Vector Databases",
+      "OpenAI API",
+      "Hugging Face",
+      "Transformers",
+      "Fine-Tuning",
+      "Machine Learning",
+      "Python",
+      "NumPy",
+      "Pandas",
+      "SciPy",
+      "scikit-learn",
+      "PyTorch",
+      "TensorFlow",
+      "XGBoost",
+      "LightGBM",
+      "Statistics",
+      "EDA",
+      "Feature Engineering",
+      "Predictive Modeling",
+      "Data Analytics",
+      "SQL",
+      "Power BI",
+      "Tableau",
+      "DAX",
+      "Data Visualization",
+      "Computer Vision",
+      "OpenCV",
+      "YOLO",
+      "MediaPipe",
+      "Image Processing",
+      "Object Detection",
+      "Image Segmentation",
+      "OCR",
+      "CNNs",
+      "GANs",
+      "ONNX",
+      "FastAPI",
+      "Flask",
+      "Streamlit",
+      "Jupyter",
+      "MLflow",
+      "MLOps",
+      "Docker",
+      "IoT & Embedded AI",
+    ],
+  },
+  {
+    initials: "YS",
+    name: "Yasir Saeed",
+    role: "CTO, AI & Web Engineering",
+    color: "from-[#4B6EF5] to-[#6C5CE7]",
+    bio: "Leads technical delivery across web platforms, SaaS products, mobile-ready applications, APIs, dashboards, integrations, cloud deployments, AI products, and the engineering systems that turn business ideas into reliable software.",
+    skills: [
+      "Web Development",
+      "App Development",
+      "React & Next.js",
+      "Node.js",
+      "TypeScript",
+      "REST & GraphQL APIs",
+      "SaaS Platforms",
+      "UI Engineering",
+      "PostgreSQL",
+      "Cloud Deployment",
+      "AI Integration",
+      "Technical Leadership",
+    ],
+  },
+  {
+    initials: "MA",
+    name: "Muneeb Ali",
+    role: "Data Analyst & BI Specialist",
+    color: "from-[#6C5CE7] to-[#3FD3E8]",
+    bio: "Data Science graduate with hands-on experience in Oracle database systems, SQL, Python analytics, business intelligence, forecasting, and applied machine learning. Built analytics platforms, RAG applications, churn insights, AI assistants, and computer-vision pipelines.",
+    skills: [
+      "SQL",
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Matplotlib",
+      "Seaborn",
+      "EDA",
+      "Data Cleaning",
+      "Statistical Analysis",
+      "Regression",
+      "Classification",
+      "Data Visualization",
+      "Microsoft Excel",
+      "Power BI",
+      "Dashboard Design",
+      "Oracle Database",
+      "Oracle APEX",
+      "MySQL",
+      "PostgreSQL",
+      "Jupyter",
+      "Google Colab",
+      "Forecasting",
+      "RAG",
+      "Streamlit",
+      "FastAPI",
+      "TensorFlow Lite",
+      "Computer Vision",
+      "Git & GitHub",
+    ],
+  },
+];
+
+function Team() {
+  useReveal();
+  return (
+    <section
+      id="team"
+      className="light-section relative scroll-mt-20 bg-white py-28 text-slate-950 sm:py-36"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 [background:radial-gradient(ellipse_60%_40%_at_50%_100%,rgba(108,92,231,0.08),transparent)]"
+      />
+      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="reveal mx-auto max-w-2xl text-center">
+          <span className="eyebrow">The team</span>
+          <h2 className="mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl">
+            Three experts. One shared standard.
+          </h2>
+          <p className="mt-5 text-lg text-muted-foreground">
+            Every member owns their domain completely. You get the specialist --
+            not a generalist pretending to be one.
+          </p>
+        </div>
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {TEAM.map((m, i) => (
+            <article
+              key={m.name}
+              className="reveal group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[oklch(0.19_0.038_265)] p-7 transition-all duration-500 hover:-translate-y-2 hover:border-white/[0.15] hover:shadow-[0_24px_60px_-12px_rgba(108,92,231,0.2)]"
+              style={{ transitionDelay: `${i * 70}ms` }}
+            >
+              <div
+                aria-hidden
+                className={`absolute inset-0 -z-10 opacity-0 transition-opacity duration-700 group-hover:opacity-[0.04] bg-gradient-to-br ${m.color}`}
+              />
+              <div
+                className={`relative inline-flex h-[72px] w-[72px] items-center justify-center rounded-2xl bg-gradient-to-br ${m.color} text-2xl font-black text-white shadow-lg`}
+              >
+                {m.initials}
+                <span className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full border-2 border-[oklch(0.19_0.038_265)] bg-[#25D366]" />
+              </div>
+              <h3 className="mt-5 font-display text-lg font-bold">{m.name}</h3>
+              <p
+                className={`mt-1 text-xs font-bold uppercase tracking-[0.18em] bg-gradient-to-r ${m.color} bg-clip-text text-transparent`}
+              >
+                {m.role}
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                {m.bio}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {m.skills.map((sk) => (
+                  <span
+                    key={sk}
+                    className="rounded-lg border border-white/[0.08] bg-white/[0.04] px-2 py-1 text-[10px] font-medium text-foreground/60"
+                  >
+                    {sk}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="reveal mt-10 text-center">
+          <Link
+            to="/about"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold transition-all hover:border-white/25 hover:bg-white/[0.04]"
+          >
+            Meet the team <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Process Section */
+const STEPS = [
+  {
+    icon: Compass,
+    n: "01",
+    color: "text-[#3FD3E8]",
+    title: "Discovery & Scoping",
+    body: "We audit your data, map your problem, and define clear deliverables and success metrics -- before writing a line of code.",
+  },
+  {
+    icon: PenTool,
+    n: "02",
+    color: "text-[#4B6EF5]",
+    title: "Architecture & Design",
+    body: "We design the system architecture, model selection, UX flows, and data pipelines. Smallest system that solves your problem correctly.",
+  },
+  {
+    icon: Hammer,
+    n: "03",
+    color: "text-[#6C5CE7]",
+    title: "Build & Integrate",
+    body: "Rigorous engineering, AI training, API integrations, and testing in your actual environment. Built in your stack.",
+  },
+  {
+    icon: Rocket,
+    n: "04",
+    color: "text-[#3FD3E8]",
+    title: "Deploy & Iterate",
+    body: "We launch, monitor metrics, handle post-launch issues, and keep improving. Ongoing support is standard.",
+  },
+];
+
+function Process() {
+  useReveal();
+  return (
+    <section
+      id="process"
+      className="light-section relative scroll-mt-20 bg-slate-50 py-28 text-slate-950 sm:py-36"
+    >
+      <div aria-hidden className="circuit-bg absolute inset-0 opacity-20" />
+      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="reveal mx-auto max-w-2xl text-center">
+          <span className="eyebrow">How we work</span>
+          <h2 className="mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl">
+            From first call to deployed system.
+          </h2>
+          <p className="mt-5 text-lg text-muted-foreground">
+            A transparent, structured process that removes uncertainty at every
+            stage.
+          </p>
+        </div>
+        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {STEPS.map((s, i) => (
+            <div
+              key={s.title}
+              className="reveal relative"
+              style={{ transitionDelay: `${i * 80}ms` }}
+            >
+              <div className="h-full rounded-2xl border border-white/[0.07] bg-[oklch(0.19_0.038_265)] p-7 transition-all hover:border-white/[0.14]">
+                <div className="flex items-center justify-between">
+                  <span
+                    className={`font-display text-4xl font-black ${s.color} opacity-25`}
+                  >
+                    {s.n}
+                  </span>
+                  <div className="grid h-11 w-11 place-items-center rounded-xl border border-white/[0.08] bg-white/[0.04]">
+                    <s.icon className={`h-5 w-5 ${s.color}`} />
+                  </div>
+                </div>
+                <h3 className="mt-6 font-display text-lg font-bold">
+                  {s.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {s.body}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="reveal mt-12 grid gap-5 rounded-2xl border border-white/[0.08] bg-gradient-to-r from-[#3FD3E8]/[0.04] to-[#6C5CE7]/[0.04] p-8 sm:grid-cols-3">
+          {[
+            {
+              icon: Clock,
+              label: "Fast Turnaround",
+              body: "Most MVP builds complete in 4-8 weeks from kickoff to launch.",
+            },
+            {
+              icon: Lock,
+              label: "NDA & IP Protection",
+              body: "Your code, data, and ideas stay yours. We sign NDAs before discovery.",
+            },
+            {
+              icon: Users,
+              label: "Direct Access",
+              body: "You talk to the engineer who built it -- not a project manager.",
+            },
+          ].map((item) => (
+            <div key={item.label} className="flex items-start gap-4">
+              <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-brand">
+                <item.icon className="h-5 w-5 text-[#0a0e1a]" />
+              </div>
+              <div>
+                <p className="font-semibold">{item.label}</p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {item.body}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Portfolio Preview */
+const WORK_PREVIEW = [
+  {
+    icon: MessageSquare,
+    tag: "AI Agent",
+    title: "AI WhatsApp Business Assistant",
+    body: "Multilingual agent qualifying leads, booking appointments, answering queries 24/7 with CRM integration and human handoff.",
+    tech: ["LangChain", "OpenAI", "Twilio", "Node.js"],
+  },
+  {
+    icon: Eye,
+    tag: "Computer Vision",
+    title: "AI Virtual Try-On System",
+    body: "Deep learning system digitally fitting garments onto human body images using GANs and computer vision.",
+    tech: ["PyTorch", "OpenCV", "GANs", "MediaPipe"],
+  },
+  {
+    icon: ShieldAlert,
+    tag: "Machine Learning",
+    title: "Fraud Detection System",
+    body: "Real-time ML pipeline identifying suspicious transaction patterns with explainable model outputs.",
+    tech: ["XGBoost", "scikit-learn", "SHAP", "Python"],
+  },
+  {
+    icon: FlaskConical,
+    tag: "Embedded AI",
+    title: "IoT Glucose Monitoring Kiosk",
+    body: "Biometric health kiosk with FreeRTOS firmware achieving 87% Clarke Zone A+B accuracy at USD 38 prototype cost.",
+    tech: ["ESP32-S3", "FreeRTOS", "MAX30102", "Embedded ML"],
+  },
+  {
+    icon: Receipt,
+    tag: "Operations",
+    title: "Invoice & Inventory System",
+    body: "End-to-end web platform automating invoicing, multi-location inventory tracking, and real-time financial reporting.",
+    tech: ["React", "Node.js", "PostgreSQL", "Tailwind"],
+  },
+  {
+    icon: Car,
+    tag: "Object Detection",
+    title: "Car Violation Detection System",
+    body: "Real-time traffic surveillance system detecting number plates and headlight violations using YOLO and OCR.",
+    tech: ["YOLOv8", "OpenCV", "OCR", "Python"],
+  },
+];
+
+function Portfolio() {
+  useReveal();
+  return (
+    <section
+      id="work"
+      className="light-section relative scroll-mt-20 bg-white py-28 text-slate-950 sm:py-36"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 [background:radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(63,211,232,0.06),transparent)]"
+      />
+      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="reveal flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
+          <div className="max-w-2xl">
+            <span className="eyebrow">Our work</span>
+            <h2 className="mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl">
+              22+ projects. Every one production-ready.
+            </h2>
+            <p className="mt-5 text-lg text-muted-foreground">
+              A snapshot of what we've built -- from AI agents to full-stack
+              systems. Full portfolio on the next page.
+            </p>
+          </div>
+          <Link
+            to="/portfolio"
+            className="shrink-0 inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-foreground transition-all hover:border-white/25 hover:bg-white/[0.04]"
+          >
+            View all 22+ projects <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {WORK_PREVIEW.map((w, i) => (
+            <article
+              key={w.title}
+              className="reveal group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[oklch(0.19_0.038_265)] p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-white/[0.14] hover:shadow-[0_20px_60px_-15px_rgba(63,211,232,0.12)]"
+              style={{ transitionDelay: `${(i % 3) * 50}ms` }}
+            >
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-25"
+                style={{ background: "var(--gradient-brand)" }}
+              />
+              <div className="flex items-start justify-between">
+                <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-brand shadow-md">
+                  <w.icon className="h-5 w-5 text-[#0a0e1a]" />
+                </div>
+                <span className="rounded-full border border-white/[0.08] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground/70">
+                  {w.tag}
+                </span>
+              </div>
+              <h3 className="mt-6 font-display text-lg font-bold leading-snug">
+                {w.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {w.body}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-1.5">
+                {w.tech.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-lg border border-white/[0.07] bg-white/[0.04] px-2.5 py-1 text-[11px] font-medium text-foreground/65"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="reveal mt-10 text-center">
+          <Link
+            to="/portfolio"
+            className="inline-flex items-center gap-2.5 rounded-full bg-gradient-brand px-7 py-3.5 text-sm font-bold text-[#0a0e1a] shadow-[0_0_40px_-10px_rgba(63,211,232,0.5)] transition-all hover:scale-105"
+          >
+            See all 22+ projects <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Testimonials */
+function Testimonials() {
+  useReveal();
+  return (
+    <section className="light-section relative bg-slate-50 py-28 text-slate-950 sm:py-36">
+      <div aria-hidden className="circuit-bg absolute inset-0 opacity-20" />
+      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="reveal mx-auto max-w-2xl text-center">
+          <span className="eyebrow">Client feedback</span>
+          <h2 className="mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl">
+            What clients say.
+          </h2>
+        </div>
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              quote:
+                "Vanguard AI built our AI WhatsApp assistant fast. It now handles 80% of customer queries without human intervention.",
+              name: "Business Owner",
+              company: "E-commerce Client",
+            },
+            {
+              quote:
+                "The fraud detection model outperformed our previous vendor's solution by a wide margin. Clean code, proper docs.",
+              name: "Operations Lead",
+              company: "Fintech Platform",
+            },
+            {
+              quote:
+                "Their Power BI dashboard unified all our data in one place. Our team makes decisions much faster now.",
+              name: "General Manager",
+              company: "Retail Business",
+            },
+          ].map((c, i) => (
+            <div
+              key={i}
+              className="reveal rounded-2xl border border-white/[0.07] bg-[oklch(0.19_0.038_265)] p-8 transition-all hover:border-white/[0.14]"
+              style={{ transitionDelay: `${i * 80}ms` }}
+            >
+              <div className="flex gap-1 mb-5">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <Star
+                    key={s}
+                    className="h-4 w-4 fill-[#3FD3E8] text-[#3FD3E8]"
+                  />
+                ))}
+              </div>
+              <p className="text-sm leading-relaxed text-foreground/85 italic">
+                "{c.quote}"
+              </p>
+              <div className="mt-6 flex items-center gap-3 border-t border-white/[0.06] pt-5">
+                <div className="grid h-10 w-10 place-items-center rounded-full bg-gradient-brand text-xs font-bold text-[#0a0e1a]">
+                  {c.name
+                    .split(" ")
+                    .map((w) => w[0])
+                    .join("")}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold">{c.name}</p>
+                  <p className="text-xs text-muted-foreground">{c.company}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="reveal mt-12 grid grid-cols-2 gap-5 sm:grid-cols-4">
+          {[
+            { n: "22+", label: "Projects shipped" },
+            { n: "100%", label: "Production-grade code" },
+            { n: "4-8 wks", label: "Avg delivery time" },
+            { n: "5 Star", label: "Client satisfaction" },
+          ].map((s) => (
+            <div
+              key={s.label}
+              className="rounded-2xl border border-white/[0.07] bg-[oklch(0.19_0.038_265)] p-6 text-center"
+            >
+              <p className="font-display text-2xl font-black text-gradient">
+                {s.n}
+              </p>
+              <p className="mt-2 text-xs text-muted-foreground">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* CTA Banner */
+function Cta() {
+  useReveal();
+  return (
+    <section className="relative py-20 sm:py-28 overflow-hidden">
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{ background: "var(--gradient-brand-soft)" }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 [background:radial-gradient(ellipse_70%_60%_at_50%_50%,rgba(63,211,232,0.12),transparent)]"
+      />
+      <div className="relative mx-auto max-w-4xl px-5 text-center lg:px-8">
+        <div className="reveal">
+          <span className="eyebrow">Ready to start?</span>
+          <h2 className="mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+            Let's build something{" "}
+            <span className="text-gradient">that actually ships.</span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+            No retainer lock-ins. No bloated teams. Just focused engineers who
+            will build your AI system, deploy it to production, and make sure it
+            works.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-gradient-brand px-8 py-4 text-base font-bold text-[#0a0e1a] shadow-[0_0_60px_-12px_rgba(63,211,232,0.7)] transition-all hover:scale-105"
+            >
+              Start a Project Today{" "}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
+            <a
+              href={WHATSAPP_HREF}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/[0.05] px-8 py-4 text-base font-semibold transition-all hover:border-white/30 hover:bg-white/[0.08]"
+            >
+              <WhatsAppIcon className="h-5 w-5 text-[#25D366]" /> Chat on
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Contact Section */
+function Contact() {
+  useReveal();
+  const formRef = useRef<HTMLFormElement>(null);
+  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const next: Record<string, string> = {};
+    const name = String(fd.get("name") || "").trim();
+    const email = String(fd.get("email") || "").trim();
+    const message = String(fd.get("message") || "").trim();
+    if (!name) next.name = "Your name is required.";
+    if (!email) next.email = "Your email is required.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      next.email = "Enter a valid email.";
+    if (!message) next.message = "Tell us about your project.";
+    setErrors(next);
+    if (Object.keys(next).length === 0) {
+      const company = String(fd.get("company") || "").trim();
+      const projectType = String(fd.get("projectType") || "").trim();
+      const subject = `Project inquiry from ${name}`;
+      const body = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Company: ${company || "Not provided"}`,
+        `Service: ${projectType || "Not provided"}`,
+        "",
+        message,
+      ].join("\n");
+      window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      setSubmitted(true);
+      formRef.current?.reset();
+    }
+  }
+
+  const inputCls =
+    "w-full rounded-xl border border-white/[0.09] bg-white/[0.03] px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/50 transition-all focus:border-[color:var(--cyan-glow)]/50 focus:bg-white/[0.05] focus:outline-none focus:ring-2 focus:ring-[color:var(--cyan-glow)]/20";
+
+  return (
+    <section
+      id="contact"
+      className="light-section relative scroll-mt-20 bg-white py-28 text-slate-950 sm:py-36"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 mx-auto h-64 max-w-5xl rounded-full opacity-20 blur-3xl"
+        style={{ background: "var(--gradient-brand)" }}
+      />
+      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="reveal mx-auto max-w-2xl text-center">
+          <span className="eyebrow">Get in touch</span>
+          <h2 className="mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl">
+            Let's talk about your project.
+          </h2>
+          <p className="mt-5 text-lg text-muted-foreground">
+            Describe what you're building. We'll respond with a focused plan
+            within one business day.
+          </p>
+        </div>
+        <div className="mt-14 grid gap-10 lg:grid-cols-[1.5fr_1fr]">
+          <form
+            ref={formRef}
+            onSubmit={onSubmit}
+            noValidate
+            className="reveal rounded-2xl border border-white/[0.08] bg-[oklch(0.19_0.038_265)] p-8 sm:p-10"
+            aria-label="Project inquiry form"
+          >
+            {submitted && (
+              <div className="mb-7 flex items-start gap-3 rounded-xl border border-[color:var(--cyan-glow)]/30 bg-[color:var(--cyan-glow)]/[0.08] px-5 py-4">
+                <Check className="mt-0.5 h-5 w-5 shrink-0 text-[color:var(--cyan-glow)]" />
+                <p className="text-sm text-foreground">
+                  Message received -- we'll be in touch within one business day.
+                </p>
+              </div>
+            )}
+            <div className="grid gap-5 sm:grid-cols-2">
+              <CField label="Full Name *" id="name" error={errors.name}>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  autoComplete="name"
+                  className={inputCls}
+                  placeholder="Your full name"
+                />
+              </CField>
+              <CField label="Email Address *" id="email" error={errors.email}>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  className={inputCls}
+                  placeholder="you@company.com"
+                />
+              </CField>
+              <CField label="Company" id="company">
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  autoComplete="organization"
+                  className={inputCls}
+                  placeholder="Optional"
+                />
+              </CField>
+              <CField label="Service Needed" id="projectType">
+                <select
+                  id="projectType"
+                  name="projectType"
+                  defaultValue=""
+                  className={inputCls}
+                >
+                  <option value="" disabled>
+                    Select a service...
+                  </option>
+                  {SERVICES.map((s) => (
+                    <option key={s.title} value={s.title}>
+                      {s.title}
+                    </option>
+                  ))}
+                  <option value="Other">Something custom</option>
+                </select>
+              </CField>
+            </div>
+            <div className="mt-5">
+              <CField
+                label="Project Details *"
+                id="message"
+                error={errors.message}
+              >
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={6}
+                  className={inputCls}
+                  placeholder="Describe your project or challenge -- the more detail, the better our first response."
+                />
+              </CField>
+            </div>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <button
+                type="submit"
+                className="inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-brand px-7 py-3.5 text-sm font-bold text-[#0a0e1a] shadow-[0_0_40px_-8px_rgba(63,211,232,0.5)] transition-all hover:scale-105"
+              >
+                Send Message <ArrowRight className="h-4 w-4" />
+              </button>
+              <p className="text-xs text-muted-foreground">
+                We reply within 1 business day. No spam.
+              </p>
+            </div>
+          </form>
+          <aside className="reveal flex flex-col gap-5">
+            <div className="rounded-2xl border border-white/[0.08] bg-[oklch(0.19_0.038_265)] p-7">
+              <h3 className="font-display text-lg font-bold mb-5">
+                Direct Contact
+              </h3>
+              <ul className="space-y-4">
+                <li className="flex items-center gap-3.5">
+                  <div className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-brand">
+                    <Mail className="h-4 w-4 text-[#0a0e1a]" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">
+                      Email
+                    </p>
+                    <a
+                      href={`mailto:${EMAIL}`}
+                      className="text-sm font-medium hover:text-[color:var(--cyan-glow)] transition-colors"
+                    >
+                      {EMAIL}
+                    </a>
+                  </div>
+                </li>
+                <li className="flex items-center gap-3.5">
+                  <div className="grid h-9 w-9 place-items-center rounded-lg bg-[#25D366]/20">
+                    <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">
+                      WhatsApp
+                    </p>
+                    <a
+                      href={WHATSAPP_HREF}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm font-medium hover:text-[color:var(--cyan-glow)] transition-colors"
+                    >
+                      {WHATSAPP_NUMBER}
+                    </a>
+                  </div>
+                </li>
+                <li className="flex items-center gap-3.5">
+                  <div className="grid h-9 w-9 place-items-center rounded-lg bg-white/[0.06]">
+                    <Phone className="h-4 w-4 text-[color:var(--cyan-glow)]" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">
+                      Phone
+                    </p>
+                    <a
+                      href="tel:+923156977277"
+                      className="text-sm font-medium hover:text-[color:var(--cyan-glow)] transition-colors"
+                    >
+                      {WHATSAPP_NUMBER}
+                    </a>
+                  </div>
+                </li>
+                <li className="flex items-center gap-3.5">
+                  <div className="grid h-9 w-9 place-items-center rounded-lg bg-white/[0.06]">
+                    <MapPin className="h-4 w-4 text-[color:var(--cyan-glow)]" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">
+                      Location
+                    </p>
+                    <p className="text-sm font-medium">
+                      Remote-first -- Available Globally
+                    </p>
+                  </div>
+                </li>
+              </ul>
+              <a
+                href={WHATSAPP_HREF}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 flex w-full items-center justify-center gap-2.5 rounded-xl border border-[#25D366]/25 bg-[#25D366]/10 py-3.5 text-sm font-bold text-[#25D366] transition-all hover:bg-[#25D366]/15"
+              >
+                <WhatsAppIcon className="h-4 w-4" /> Chat on WhatsApp Now
+              </a>
+            </div>
+            <div className="rounded-2xl border border-white/[0.08] bg-[oklch(0.19_0.038_265)] p-7">
+              <h3 className="font-display text-base font-bold mb-4">
+                Follow Vanguard AI
+              </h3>
+              <div className="flex gap-3">
+                <Social href={INSTAGRAM_URL} label="Instagram">
+                  <Instagram className="h-4 w-4" />
+                </Social>
+                <Social href={FACEBOOK_URL} label="Facebook">
+                  <Facebook className="h-4 w-4" />
+                </Social>
+                <Social href={TIKTOK_URL} label="TikTok">
+                  <Music2 className="h-4 w-4" />
+                </Social>
+                <Social href={WHATSAPP_HREF} label="WhatsApp">
+                  <WhatsAppIcon className="h-4 w-4" />
+                </Social>
+              </div>
+            </div>
+            <div className="rounded-2xl border border-[color:var(--cyan-glow)]/15 bg-[color:var(--cyan-glow)]/[0.04] p-7">
+              <Activity className="h-6 w-6 text-[color:var(--cyan-glow)] mb-3" />
+              <p className="font-semibold">Typical response time</p>
+              <p className="mt-1.5 text-sm text-muted-foreground">
+                We respond within{" "}
+                <span className="font-semibold text-foreground">
+                  24 hours on business days.
+                </span>{" "}
+                WhatsApp is fastest for urgent matters.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CField({
+  label,
+  id,
+  error,
+  children,
+}: {
+  label: string;
+  id: string;
+  error?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <label
+        htmlFor={id}
+        className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground/70"
+      >
+        {label}
+      </label>
+      {children}
+      {error && (
+        <p role="alert" className="mt-2 text-xs text-red-400">
+          Warning: {error}
+        </p>
+      )}
+    </div>
+  );
+}
