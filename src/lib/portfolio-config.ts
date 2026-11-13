@@ -1,20 +1,21 @@
-// Portfolio Configuration - Zohaib Ahmad Khan Sumbal
+// Portfolio Configuration - Zohaib Ahmed Khan Sumbal
 export const PORTFOLIO_CONFIG = {
   // Personal Information
-  name: "Zohaib Ahmad Khan Sumbal",
+  name: "Zohaib Ahmed Khan Sumbal",
   title: "Data Scientist & AI Engineer",
   tagline: "Building Intelligent Systems with AI & Machine Learning",
-  bio: "I'm a BS Data Science graduate passionate about building intelligent systems. I specialize in generative AI, agentic workflows, and deep learning solutions. I transform complex data problems into production-ready AI applications.",
+  bio: "I build production-ready AI systems that actually ship — from intelligent agents and RAG applications to computer vision solutions and IoT systems. 30+ projects delivered, specializing in turning complex technical challenges into working software.",
   
   // Contact Information
   email: "zohaibsumbal8@gmail.com",
   phone: "+92 306 1032323",
+  phoneAlt: "+92 315 6977277",
   location: "Muzaffargarh, Pakistan",
   
   // Social Links
   github: "https://github.com/zohaibsumbal786",
-  linkedin: "https://www.linkedin.com/in/zohaib-ahmad-khan-sumbal", // Update if you have one
-  portfolio: "https://zyftora-ai-solutions.pages.dev",
+  linkedin: "https://www.linkedin.com/in/zohaib-ahmed-khan-sumbal",
+  portfolio: "https://github.com/zohaibsumbal786",
   whatsapp: "https://wa.me/923061032323",
   
   // Education
@@ -24,7 +25,6 @@ export const PORTFOLIO_CONFIG = {
       institution: "MNS University of Agriculture Multan (MNSUAM)",
       location: "Multan, Pakistan",
       period: "2022 - 2026",
-      gpa: "3.10/4.0",
       highlights: [
         "Focused on Machine Learning, Deep Learning, and AI Systems",
         "Research in IoT-based Non-Invasive Health Monitoring",
@@ -124,43 +124,109 @@ export const PORTFOLIO_CONFIG = {
   // Certifications
   certifications: [
     {
+      title: "Internship Certificate",
+      issuer: "Professional Internship",
+      date: "September 2026",
+      description: "Completed a professional internship in AI and software development, applying machine learning and full-stack engineering skills in a real-world environment.",
+      category: "Experience",
+      file: "/certificates/internship-certificate.pdf"
+    },
+    {
+      title: "Google Data Analytics Professional Certificate",
+      issuer: "Google (Coursera)",
+      date: "2024",
+      description: "Comprehensive 8-course professional certificate covering data cleaning, analysis, visualization with R and Tableau, SQL, and data-driven storytelling.",
+      category: "Data Analytics",
+      file: "/certificates/coursera-google-analytics.pdf"
+    },
+    {
+      title: "IBM Data Science Professional Certificate",
+      issuer: "IBM (Coursera)",
+      date: "2024",
+      description: "Professional certification covering Python, SQL, data analysis, visualization, machine learning, and applied data science capstone projects.",
+      category: "Data Science",
+      file: "/certificates/coursera-ibm-data-science.pdf"
+    },
+    {
       title: "Foundations of Data Science",
-      issuer: "Google",
-      description: "Core data science concepts, statistics, programming, and data analysis"
+      issuer: "Google (Coursera)",
+      date: "October 2024",
+      description: "Core data science concepts, statistics, programming, and data analysis workflows.",
+      category: "Data Science",
+      file: "/certificates/coursera-foundations-data-science.pdf"
     },
     {
       title: "Data Analysis with R Programming",
-      issuer: "Google",
-      description: "Master data analysis using R, including data visualization and statistical techniques"
-    },
-    {
-      title: "Introduction to the Internet of Things and Embedded Systems",
-      issuer: "University of California, Irvine",
-      description: "IoT concepts, embedded systems architecture, and hardware-software integration"
+      issuer: "Google (Coursera)",
+      date: "October 2024",
+      description: "Data analysis using R, including data visualization, statistical techniques, and tidyverse.",
+      category: "Data Science",
+      file: "/certificates/coursera-data-analysis-r.pdf"
     },
     {
       title: "Discover Data Analysis",
-      issuer: "Microsoft",
-      description: "Data exploration, analytics concepts, and data-driven decision-making"
+      issuer: "Microsoft Learn",
+      date: "2024",
+      description: "Data exploration, analytics concepts, and data-driven decision-making using Microsoft tools.",
+      category: "Data Analytics",
+      file: "/certificates/microsoft-discover-data-analysis.pdf"
     },
     {
       title: "Implement Error Handling with Transact-SQL",
-      issuer: "Microsoft",
-      description: "Error handling in SQL Server using Transact-SQL and TRY-CATCH blocks"
+      issuer: "Microsoft Learn",
+      date: "2024",
+      description: "Error handling in SQL Server using Transact-SQL and TRY-CATCH blocks.",
+      category: "Database",
+      file: "/certificates/microsoft-implement-error-handling-sql.pdf"
     },
     {
       title: "Introduction to End-to-End Analytics Using Microsoft Fabric",
-      issuer: "Microsoft",
-      description: "End-to-end analytics, data transformation, analysis, and visualization"
+      issuer: "Microsoft Learn",
+      date: "2024",
+      description: "End-to-end analytics, data transformation, analysis, and visualization on Microsoft Fabric.",
+      category: "Data Analytics",
+      file: "/certificates/microsoft-intro-analytics-fabric.pdf"
+    },
+    {
+      title: "Microsoft Azure AI Fundamentals",
+      issuer: "Microsoft Learn",
+      date: "2024",
+      description: "Foundational knowledge of Azure AI services, machine learning, and cognitive services for building intelligent applications.",
+      category: "Cloud & AI",
+      file: "/certificates/microsoft-azure-ai.pdf"
+    },
+    {
+      title: "Microsoft Power BI Data Analyst",
+      issuer: "Microsoft Learn",
+      date: "2024",
+      description: "Professional data analysis and visualization using Power BI, including DAX, data modeling, and dashboard creation.",
+      category: "Data Analytics",
+      file: "/certificates/microsoft-powerbi-analyst.pdf"
+    },
+    {
+      title: "Introduction to IoT and Embedded Systems",
+      issuer: "University of California, Irvine",
+      date: "2024",
+      description: "IoT concepts, embedded systems architecture, sensor integration, and hardware-software communication.",
+      category: "IoT",
+      file: "/certificates/uc-irvine-iot.pdf"
+    },
+    {
+      title: "Secondary School Certificate (Matriculation)",
+      issuer: "Board of Intermediate & Secondary Education",
+      date: "2020",
+      description: "Secondary School Certificate (SSC/Matric) — foundational academic credential.",
+      category: "Education",
+      file: "/certificates/ssc-certificate.pdf"
     }
   ],
   
   // Stats
   stats: [
-    { number: "30+", label: "AI/ML Projects Completed" },
-    { number: "6+", label: "Technical Certifications" },
-    { number: "4+", label: "Years of Experience" },
-    { number: "100%", label: "Open Source Contributions" }
+    { n: "30+", label: "Projects Completed" },
+    { n: "12+", label: "Certifications" },
+    { n: "3+", label: "Years of Experience" },
+    { n: "20+", label: "Technologies" },
   ]
 };
 

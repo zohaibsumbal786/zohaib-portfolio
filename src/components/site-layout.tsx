@@ -2,23 +2,20 @@ import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
   ArrowRight,
-  Instagram,
-  Facebook,
-  Music2,
+  Github,
+  Linkedin,
   Mail,
   MapPin,
   Phone,
 } from "lucide-react";
 
-export const WHATSAPP_NUMBER = "+92 315 6977277";
+export const WHATSAPP_NUMBER = "+92 306 1032323";
 export const WHATSAPP_HREF =
-  "https://wa.me/923156977277?text=" +
-  encodeURIComponent("Hi Vanguard AI — I'd like to talk about a project.");
-export const EMAIL = "vanguardai@gmail.com";
-export const FACEBOOK_URL =
-  "https://www.facebook.com/profile.php?id=61593997093529&mibextid=wwXIfr&rdid=cHudkUxn7TyrCXSD&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1HRgGtR4Cm%2F%3Fmibextid%3DwwXIfr";
-export const INSTAGRAM_URL = "https://www.instagram.com/vanguardai.1?stkn=cGJlbWtkOXYxNHNp&utm_source=qr";
-export const TIKTOK_URL = "https://www.tiktok.com/@vanguardaillc";
+  "https://wa.me/923061032323?text=" +
+  encodeURIComponent("Hi Zohaib, I'd like to discuss a project with you.");
+export const EMAIL = "zohaibsumbal8@gmail.com";
+export const LINKEDIN_URL = "https://www.linkedin.com/in/zohaib-ahmad-bb4483369";
+export const GITHUB_URL = "https://github.com/zohaibsumbal786";
 
 export function WhatsAppIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -50,12 +47,11 @@ export function Social({
   );
 }
 
-export function VanguardAIMark() {
+export function ZKMonogram() {
   return (
-    <span className="vanguardai-wordmark" aria-label="Vanguard AI">
-      <span className="vanguardai-bracket">&lt;</span>
-      <span className="vanguardai-name">vanguard ai</span>
-      <span className="vanguardai-bracket">&gt;</span>
+    <span className="zk-monogram" aria-label="Zohaib Ahmad Khan Sumbal">
+      <span className="zk-badge">ZK</span>
+      <span className="zk-name">Zohaib</span>
     </span>
   );
 }
@@ -117,7 +113,7 @@ export function SiteNav() {
     >
       <div className="mx-auto flex h-[64px] max-w-7xl items-center justify-between px-6 lg:px-8">
         <Link to="/" className="shrink-0">
-          <VanguardAIMark />
+          <ZKMonogram />
         </Link>
 
         <nav className="hidden items-center gap-0.5 lg:flex">
@@ -125,7 +121,7 @@ export function SiteNav() {
             to="/services"
             className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${currentPath === "/services" ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
           >
-            Services
+            Skills
           </Link>
           <Link
             to="/portfolio"
@@ -189,7 +185,7 @@ export function SiteNav() {
         <div className="border-t border-white/[0.06] bg-[oklch(0.14_0.025_265)] lg:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col px-5 py-4 gap-1">
             {[
-              { label: "Services", to: "/services" },
+              { label: "Skills", to: "/services" },
               { label: "Work", to: "/portfolio" },
               { label: "About", to: "/about" },
               { label: "Insights", to: "/blog" },
@@ -245,38 +241,33 @@ const FOOTER_SERVICES = [
 ];
 const FOOTER_QUICK = [
   { label: "Home", to: "/" },
-  { label: "Services", to: "/services" },
-  { label: "Our Work", to: "/portfolio" },
-  { label: "About Us", to: "/about" },
+  { label: "Skills", to: "/services" },
+  { label: "My Work", to: "/portfolio" },
+  { label: "About", to: "/about" },
   { label: "Insights", to: "/blog" },
   { label: "Contact", to: "/contact" },
 ];
 
 export function SiteFooter() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
   return (
     <footer className="relative bg-[oklch(0.12_0.025_265)]">
       <div className="mx-auto max-w-7xl px-5 pt-16 pb-12 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1.8fr_1fr_1.2fr_1.4fr]">
           <div>
             <Link to="/" className="inline-flex items-center gap-3 mb-5">
-              <VanguardAIMark />
+              <ZKMonogram />
             </Link>
             <p className="text-sm leading-relaxed text-muted-foreground max-w-xs">
-              AI Solutions Engineered for Tomorrow. We build intelligent agents,
-              ML systems, IoT solutions, and full-stack applications for
-              businesses ready to automate.
+              Data Scientist & AI Engineer from Pakistan. I build agentic AI systems,
+              ML pipelines, computer vision solutions, IoT embedded devices, and
+              full-stack applications.
             </p>
             <div className="mt-6 flex gap-3">
-              <Social href={INSTAGRAM_URL} label="Instagram">
-                <Instagram className="h-4 w-4" />
+              <Social href={GITHUB_URL} label="GitHub">
+                <Github className="h-4 w-4" />
               </Social>
-              <Social href={FACEBOOK_URL} label="Facebook">
-                <Facebook className="h-4 w-4" />
-              </Social>
-              <Social href={TIKTOK_URL} label="TikTok">
-                <Music2 className="h-4 w-4" />
+              <Social href={LINKEDIN_URL} label="LinkedIn">
+                <Linkedin className="h-4 w-4" />
               </Social>
               <Social href={WHATSAPP_HREF} label="WhatsApp">
                 <WhatsAppIcon className="h-4 w-4" />
@@ -332,7 +323,7 @@ export function SiteFooter() {
             <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-5">
               Contact
             </h4>
-            <ul className="space-y-3 mb-7">
+            <ul className="space-y-3">
               <li>
                 <a
                   href={`mailto:${EMAIL}`}
@@ -355,7 +346,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <a
-                  href="tel:+923156977277"
+                  href="tel:+923061032323"
                   className="flex items-center gap-2.5 text-sm text-foreground/65 hover:text-[color:var(--cyan-glow)] transition-colors"
                 >
                   <Phone className="h-4 w-4 text-[color:var(--cyan-glow)] shrink-0" />
@@ -364,53 +355,16 @@ export function SiteFooter() {
               </li>
               <li className="flex items-center gap-2.5 text-sm text-foreground/65">
                 <MapPin className="h-4 w-4 text-[color:var(--cyan-glow)] shrink-0" />
-                Remote-first · Global
+                Muzaffargarh, Pakistan · Remote
               </li>
             </ul>
-
-            <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
-              <p className="text-sm font-bold text-foreground mb-1">
-                Stay updated
-              </p>
-              <p className="text-xs text-muted-foreground mb-3">
-                Get insights on AI engineering & automation.
-              </p>
-              {subscribed ? (
-                <p className="text-xs font-semibold text-[color:var(--cyan-glow)]">
-                  ✓ You're subscribed!
-                </p>
-              ) : (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    if (email.includes("@")) setSubscribed(true);
-                  }}
-                  className="flex gap-2"
-                >
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="your@email.com"
-                    required
-                    className="min-w-0 flex-1 rounded-lg border border-white/[0.08] bg-white/[0.04] px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-[color:var(--cyan-glow)]/40 focus:outline-none"
-                  />
-                  <button
-                    type="submit"
-                    className="shrink-0 rounded-lg bg-[color:var(--cyan-glow)] px-4 py-2 text-xs font-semibold text-[#07111f] transition-transform hover:scale-105"
-                  >
-                    Subscribe
-                  </button>
-                </form>
-              )}
-            </div>
           </div>
         </div>
       </div>
 
       <div className="border-t border-white/[0.06]">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-5 text-xs text-muted-foreground/50 sm:flex-row lg:px-8">
-          <p>© 2026 Vanguard AI. All rights reserved.</p>
+          <p>© 2026 Zohaib Ahmad Khan Sumbal. All rights reserved.</p>
           <div className="flex gap-5">
             <a href="#" className="hover:text-foreground transition-colors">
               Privacy Policy
@@ -420,7 +374,7 @@ export function SiteFooter() {
             </a>
           </div>
           <p className="text-gradient font-bold tracking-[0.2em] text-[10px]">
-            AI SOLUTIONS ENGINEERED FOR TOMORROW
+            DATA SCIENTIST · AI ENGINEER · PAKISTAN
           </p>
         </div>
       </div>

@@ -11,7 +11,15 @@ export default defineConfig({
     tanstackStart({
       prerender: {
         enabled: true,
-        crawlLinks: true,
+        crawlLinks: false,
+        routes: [
+          "/",
+          "/about",
+          "/services",
+          "/portfolio",
+          "/blog",
+          "/contact",
+        ],
       },
     }),
     react(),
